@@ -16,6 +16,7 @@ class Game
 	Stopwatch timer;						// timer for measuring frame duration
 	Shader shader;							// shader to use for rendering
 	Texture wood;							// texture to use for rendering
+        SceneGraph root;
 
 	// initialize
 	public void Init()
@@ -31,7 +32,10 @@ class Game
 		shader = new Shader( "../../shaders/vs.glsl", "../../shaders/fs.glsl" );
 		// load a texture
 		wood = new Texture( "../../assets/wood.jpg" );
-	}
+            root = new SceneGraph();
+            root.AddChildNode(mesh);
+            mesh.AddChildNode(floor);
+        }
 
 	// tick for background surface
 	public void Tick()
@@ -60,9 +64,13 @@ class Game
 		if (a > 2 * PI) a -= 2 * PI;
 
 		// render scene
-		mesh.Render( shader, transform, wood );
-		floor.Render( shader, transform, wood );
-	}
-}
+		//mesh.Render( shader, transform, wood );
+		//floor.Render( shader, transform, wood );
+            root.Update(transform);
+            root.Render(shader, wood);
+            //root.Input(transform);
+
+        }
+    }
 
 } // namespace Template_P3

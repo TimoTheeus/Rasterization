@@ -5,3 +5,10 @@ C:\Users\Timo\Documents\Rasterizer\bin\Debug\OpenTK.dll
 C:\Users\Timo\Documents\Rasterizer\obj\Debug\template_P3.csprojResolveAssemblyReference.cache
 C:\Users\Timo\Documents\Rasterizer\obj\Debug\template_P3.exe
 C:\Users\Timo\Documents\Rasterizer\obj\Debug\template_P3.pdb
+C:\Users\Timo\Documents\Rasterization\bin\Debug\template_P3.exe.config
+C:\Users\Timo\Documents\Rasterization\obj\Debug\template_P3.exe
+C:\Users\Timo\Documents\Rasterization\obj\Debug\template_P3.pdb
+C:\Users\Timo\Documents\Rasterization\bin\Debug\template_P3.exe
+C:\Users\Timo\Documents\Rasterization\bin\Debug\template_P3.pdb
+C:\Users\Timo\Documents\Rasterization\bin\Debug\OpenTK.dll
+C:\Users\Timo\Documents\Rasterization\obj\Debug\template_P3.csprojResolveAssemblyReference.cache
