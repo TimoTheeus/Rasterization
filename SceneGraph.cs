@@ -22,16 +22,16 @@ namespace Template_P3
         //Update the viewmatrix of parent and children based on a transformMatrix
         public virtual void Update(Matrix4 transformMatrix)
         {
+            this.viewMatrix *= transformMatrix;
             //transform the matrix
             foreach(SceneGraph child in this.children)
             {
                 //transform the viewMatrix of all children
-                child.viewMatrix *= transformMatrix;
                 child.Update(transformMatrix);
             }
         }
         //Add child and make this its parent
-        public void AddChildNode(Mesh child)
+        public void AddChildNode(SceneGraph child)
         {
             children.Add(child);
             child.parent = this;

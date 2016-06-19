@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using OpenTK;
-
+using System;
 // minimal OpenTK rendering framework for UU/INFOGR
 // Jacco Bikker, 2016
 
@@ -16,7 +16,7 @@ class Game
 	Stopwatch timer;						// timer for measuring frame duration
 	Shader shader;							// shader to use for rendering
 	Texture wood;							// texture to use for rendering
-        SceneGraph root;
+        SceneGraph root,root2;
 
 	// initialize
 	public void Init()
@@ -33,6 +33,7 @@ class Game
 		// load a texture
 		wood = new Texture( "../../assets/wood.jpg" );
             root = new SceneGraph();
+            root2 = new SceneGraph();
             root.AddChildNode(mesh);
             mesh.AddChildNode(floor);
         }
@@ -41,31 +42,32 @@ class Game
 	public void Tick()
 	{
 		screen.Clear( 0 );
-		screen.Print( "hello world", 2, 2, 0xffff00 );
 	}
 
-	// tick for OpenGL rendering code
-	public void RenderGL()
-	{
-		// measure frame duration
-		float frameDuration = timer.ElapsedMilliseconds;
-		timer.Reset();
-		timer.Start();
-	
-		// prepare matrix for vertex shader
-		Matrix4 transform = Matrix4.CreateFromAxisAngle( new Vector3( 0, 1, 0 ), a );
+        // tick for OpenGL rendering code
+        public void RenderGL()
+        {
+            // measure frame duration
+            float frameDuration = timer.ElapsedMilliseconds;
+            timer.Reset();
+            timer.Start();
+
+            // prepare matrix for rotate
+            Matrix4 transform = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
             //camera thingy
-		transform *= Matrix4.CreateTranslation( 0, -4, -15 );
+            transform *= Matrix4.CreateTranslation(0, -4, -15);
             //fov aspect ratio, near Z plane, far Z plane
-		transform *= Matrix4.CreatePerspectiveFieldOfView( 1.2f, 1.3f, .1f, 1000f );
+            transform *= Matrix4.CreatePerspectiveFieldOfView(1.2f, 1.3f, .1f, 1000f);
+            // update rotation
+            a += 0.001f * frameDuration;
+            if (a > 2 * PI) a -= 2 * PI;
 
-		// update rotation
-		a += 0.001f * frameDuration; 
-		if (a > 2 * PI) a -= 2 * PI;
+            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
 
-		// render scene
-		//mesh.Render( shader, transform, wood );
-		//floor.Render( shader, transform, wood );
+            // render scene
+            //mesh.Render( shader, transform, wood );
+            //floor.Render( shader, transform, wood );
+            floor.Update(transform2);
             root.Update(transform);
             root.Render(shader, wood);
             //root.Input(transform);
