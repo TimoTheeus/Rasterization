@@ -19,7 +19,7 @@ namespace Template_P3
         int quadBufferId;                       // quad buffer
 
         // constructor
-        public Mesh(string fileName)
+        public Mesh(Vector3 position, float scale, string fileName) : base (position, scale)
         {
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);

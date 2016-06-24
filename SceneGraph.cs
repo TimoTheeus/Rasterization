@@ -13,10 +13,10 @@ namespace Template_P3
         public Matrix4 transform;
         public Matrix4 viewMatrix;
         public Matrix4 originalMatrix;              
-        public SceneGraph()
+        public SceneGraph(Vector3 position, float scale)
         {
             children = new List<SceneGraph>();
-            viewMatrix = Matrix4.Identity;
+            viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
         }
         //Update the viewmatrix of parent and children based on a transformMatrix

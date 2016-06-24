@@ -30,8 +30,13 @@ namespace Template_P3
         public void Init()
         {
             // load teapot
-            mesh = new Mesh("../../assets/teapot.obj");
-            floor = new Mesh("../../assets/floor.obj");
+            mesh = new Mesh(new Vector3(0,0,0), 1,  "../../assets/teapot.obj");
+            floor = new Mesh(new Vector3(0, 0, 0), 1, "../../assets/floor.obj");
+            Mesh mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
+            Mesh mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
+            Mesh mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
+            Mesh mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
+            Mesh mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
             // initialize stopwatch
             timer = new Stopwatch();
             timer.Reset();
@@ -40,11 +45,15 @@ namespace Template_P3
             shader = new Shader("../../shaders/vs.glsl", "../../shaders/fs.glsl");
             // load a texture
             wood = new Texture("../../assets/wood.jpg");
-            root = new SceneGraph();
+            root = new SceneGraph(new Vector3(0,1,0), 1);
             root.AddChildNode(mesh);
+            root.AddChildNode(mesh2);
+            root.AddChildNode(mesh3);
+            root.AddChildNode(mesh4);
+            root.AddChildNode(mesh5);
+            root.AddChildNode(mesh6);
             mesh.AddChildNode(floor);
         }
-
         // tick for background surface
         public void Tick()
         {
@@ -105,7 +114,7 @@ namespace Template_P3
             //fov aspect ratio, near Z plane, far Z plane
             transform *= Matrix4.CreatePerspectiveFieldOfView(1.2f, 1.3f, .1f, 1000f);
             // update rotation
-            a += 0.000f * frameDuration;
+            a += 0.001f * frameDuration;
             if (a > 2 * PI) a -= 2 * PI;
 
             Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
