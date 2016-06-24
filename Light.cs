@@ -7,7 +7,7 @@ using OpenTK;
 
 namespace Template_P3
 {
-    class Light
+    public class Light
     {
         //member variables
         public Vector3 location;

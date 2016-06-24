@@ -7,12 +7,11 @@ uniform sampler2D pixels;		// texture sampler
 uniform float ambientCoefficient=0.5f;
 
 // shader output
-out vec4 outputColor;
 out vec4 ambientColor;
 
 // fragment shader
 void main()
 {
-    outputColor = texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
-    ambientColor= outputColor*ambientCoefficient;
+    ambientColor= texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
+    ambientColor*=ambientCoefficient;
 }
