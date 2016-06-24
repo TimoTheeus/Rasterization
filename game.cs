@@ -12,7 +12,7 @@ namespace Template_P3
     {
         // member variables
         public Surface screen;                  // background surface for printing etc.
-        Mesh mesh, floor;                       // a mesh to draw using OpenGL
+        Mesh mesh,mesh2,mesh3,mesh4,mesh5,mesh6, floor;                       // a mesh to draw using OpenGL
         const float PI = 3.1415926535f;         // PI
         float a = 0;                            // teapot rotation angle
         Stopwatch timer;                        // timer for measuring frame duration
@@ -32,11 +32,11 @@ namespace Template_P3
             // load teapot
             mesh = new Mesh(new Vector3(0,0,0), 1,  "../../assets/teapot.obj");
             floor = new Mesh(new Vector3(0, 0, 0), 1, "../../assets/floor.obj");
-            Mesh mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
-            Mesh mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
-            Mesh mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
-            Mesh mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
-            Mesh mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
+             mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
+             mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
+             mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
+             mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
+             mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
             // initialize stopwatch
             timer = new Stopwatch();
             timer.Reset();
@@ -47,11 +47,11 @@ namespace Template_P3
             wood = new Texture("../../assets/wood.jpg");
             root = new SceneGraph(new Vector3(0,1,0), 1);
             root.AddChildNode(mesh);
-            root.AddChildNode(mesh2);
-            root.AddChildNode(mesh3);
-            root.AddChildNode(mesh4);
-            root.AddChildNode(mesh5);
-            root.AddChildNode(mesh6);
+            mesh.AddChildNode(mesh2);
+            mesh.AddChildNode(mesh3);
+            mesh.AddChildNode(mesh4);
+            mesh.AddChildNode(mesh5);
+            mesh.AddChildNode(mesh6);
             mesh.AddChildNode(floor);
         }
         // tick for background surface
@@ -117,12 +117,13 @@ namespace Template_P3
             a += 0.001f * frameDuration;
             if (a > 2 * PI) a -= 2 * PI;
 
-            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
+            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1f, 0), a);
 
             // render scene
             //mesh.Render( shader, transform, wood );
             //floor.Render( shader, transform, wood );
             floor.Update(transform2);
+            
             root.Update(transform);
             root.Render(shader, wood);
             //root.Input(transform);
