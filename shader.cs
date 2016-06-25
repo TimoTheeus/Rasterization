@@ -14,6 +14,7 @@ public class Shader
 	public int uniform_mview;
     public int uniform_acol;
     public int uniform_mcol;
+    public int uniform_scol;
 
 	// constructor
 	public Shader( String vertexShader, String fragmentShader )
@@ -32,7 +33,8 @@ public class Shader
 		uniform_mview = GL.GetUniformLocation( programID, "transform" );
         uniform_acol = GL.GetUniformLocation( programID, "ambientCol");
         uniform_mcol = GL.GetUniformLocation(programID, "materialCol");
-	}
+        uniform_scol = GL.GetUniformLocation(programID, "specularCol");
+        }
 
 	// loading shaders
 	void Load( String filename, ShaderType type, int program, out int ID )

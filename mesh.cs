@@ -18,6 +18,7 @@ namespace Template_P3
         int triangleBufferId;                   // triangle buffer
         int quadBufferId;                       // quad buffer
         Vector4 materialColor;
+        Vector4 specularColor;
 
         // constructor
         public Mesh(Vector3 position, float scale, string fileName) : base (position, scale)
@@ -25,6 +26,7 @@ namespace Template_P3
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);
             materialColor = new Vector4(1f, 1f, 0f, 1f);
+            specularColor = new Vector4(1f, 1f, 0f, 1f);
         }
 
         
@@ -70,8 +72,9 @@ namespace Template_P3
 
             // pass transform to vertex shader
             GL.UniformMatrix4(shader.uniform_mview, false, ref this.viewMatrix);
-            GL.Uniform4(shader.uniform_acol, ambientColor);
-            GL.Uniform4(shader.uniform_mcol, this.materialColor);
+            GL.Uniform4(shader.uniform_mcol, ref this.materialColor);
+            GL.Uniform4(shader.uniform_acol, ref this.ambientColor);
+            GL.Uniform4(shader.uniform_scol, ref this.specularColor);
 
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);
