@@ -19,3 +19,10 @@ C:\Users\Mees\Documents\GitHub\Rasterization\bin\Debug\OpenTK.dll
 C:\Users\Mees\Documents\GitHub\Rasterization\obj\Debug\template_P3.csprojResolveAssemblyReference.cache
 C:\Users\Mees\Documents\GitHub\Rasterization\obj\Debug\template_P3.exe
 C:\Users\Mees\Documents\GitHub\Rasterization\obj\Debug\template_P3.pdb
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\bin\Debug\template_P3.exe.config
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\obj\Debug\template_P3.exe
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\obj\Debug\template_P3.pdb
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\bin\Debug\template_P3.exe
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\bin\Debug\template_P3.pdb
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\bin\Debug\OpenTK.dll
+C:\Users\Thomas\Documents\2015-2016\P4-Graphics\P3-1\Rasterization\obj\Debug\template_P3.csprojResolveAssemblyReference.cache

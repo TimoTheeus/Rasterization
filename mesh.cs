@@ -68,6 +68,7 @@ namespace Template_P3
 
             // pass transform to vertex shader
             GL.UniformMatrix4(shader.uniform_mview, false, ref this.viewMatrix);
+            GL.Uniform4(shader.uniform_acol, new Vector4(0.1f, 0.1f, 0.1f, 1));
 
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);

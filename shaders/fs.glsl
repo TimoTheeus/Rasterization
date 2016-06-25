@@ -4,14 +4,14 @@
 in vec2 uv;						// interpolated texture coordinates
 in vec4 normal;					// interpolated normal
 uniform sampler2D pixels;		// texture sampler
-uniform float ambientCoefficient=0.5f;
+uniform vec4 ambientCol;
 
 // shader output
-out vec4 ambientColor;
+out vec4 outputColor;
 
 // fragment shader
 void main()
 {
-    ambientColor= texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
-    ambientColor*=ambientCoefficient;
+    outputColor = texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
+    outputColor *= ambientCol;
 }
