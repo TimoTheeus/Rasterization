@@ -11,7 +11,9 @@ public class Shader
 	public int attribute_vpos;
 	public int attribute_vnrm;
 	public int attribute_vuvs;
-	public int uniform_mview;
+
+    public int uniform_mview;
+    public int uniform_cpos;
     public int uniform_acol;
     public int uniform_mcol;
     public int uniform_scol;
@@ -32,6 +34,8 @@ public class Shader
 		attribute_vnrm = GL.GetAttribLocation( programID, "vNormal" );
 		attribute_vuvs = GL.GetAttribLocation( programID, "vUV" );
 		uniform_mview = GL.GetUniformLocation( programID, "transform" );
+
+        uniform_cpos = GL.GetUniformLocation( programID, "cameraPosition");
         uniform_acol = GL.GetUniformLocation( programID, "ambientCol");
         uniform_mcol = GL.GetUniformLocation( programID, "materialCol");
         uniform_scol = GL.GetUniformLocation( programID, "specularCol");

@@ -77,6 +77,7 @@ namespace Template_P3
             GL.Uniform4(shader.uniform_acol, this.ambientColor);
             GL.Uniform4(shader.uniform_scol, this.specularColor);
             GL.Uniform4(shader.uniform_lpos, this.singleLight.location);
+            GL.Uniform3(shader.uniform_cpos, Game.camPos);
 
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);

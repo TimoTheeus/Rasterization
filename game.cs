@@ -21,7 +21,7 @@ namespace Template_P3
         SceneGraph root;
         Matrix4 camtransMatrix;
         Matrix4 camrotMatrixX, camrotMatrixY;
-        Vector3 camPos;
+        public static Vector3 camPos;
         Vector3 camRot;
         float moveSpeed = 0.03f;
         float rotSpeed = 0.03f;
@@ -32,11 +32,11 @@ namespace Template_P3
             // load teapot
             mesh = new Mesh(new Vector3(0,0,0), 1,  "../../assets/teapot.obj");
             floor = new Mesh(new Vector3(0, 0, 0), 1, "../../assets/floor.obj");
-             mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
-             mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
-             mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
-             mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
-             mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
+            mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
+            mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
+            mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
+            mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
+            mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
             // initialize stopwatch
             timer = new Stopwatch();
             timer.Reset();
