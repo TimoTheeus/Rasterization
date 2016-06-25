@@ -20,11 +20,14 @@ out vec4 outputColor;
 void main()
 {
 	// L
-	vec4 lightdirection = fPosition - lightPosition;
+	vec4 L= fPosition - lightPosition;
 	// V
-	vec4 temp = fPosition - vec4(cameraPosition, 1.0);
+	vec4 V= fPosition - vec4(cameraPosition, 1.0);
 
     outputColor = texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
 
-    outputColor *= temp;
+    outputColor *= V;
+    vec3 LtoVector3= L.xyz;
+    vec3 reflectedDirection=LtoVector3-2*dot(LtoVector3,normal.xyz)*normal.xyz;
+    vec4 R = vec4(reflectedDirection.xyz,1);
 }
