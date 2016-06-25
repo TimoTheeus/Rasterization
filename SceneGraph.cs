@@ -13,13 +13,15 @@ namespace Template_P3
         public Matrix4 transform;
         public Matrix4 viewMatrix;
         public Matrix4 originalMatrix;
-        public Light singleLight;      
+        public Light singleLight;
+        protected Vector4 ambientColor;
         public SceneGraph(Vector3 position, float scale)
         {
             children = new List<SceneGraph>();
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
             singleLight=new Light(new Vector3(0, 0, 5), new Vector3(50f, 50f, 50f));
+            ambientColor = new Vector4(0.5f, 0.5f, 0.5f, 1f);
         }
         //Update the viewmatrix of parent and children based on a transformMatrix
         public virtual void Update(Matrix4 transformMatrix)

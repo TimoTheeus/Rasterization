@@ -17,12 +17,14 @@ namespace Template_P3
         int vertexBufferId;                     // vertex buffer
         int triangleBufferId;                   // triangle buffer
         int quadBufferId;                       // quad buffer
+        Vector4 materialColor;
 
         // constructor
         public Mesh(Vector3 position, float scale, string fileName) : base (position, scale)
         {
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);
+            materialColor = new Vector4(1f, 1f, 0f, 1f);
         }
 
         
@@ -68,8 +70,8 @@ namespace Template_P3
 
             // pass transform to vertex shader
             GL.UniformMatrix4(shader.uniform_mview, false, ref this.viewMatrix);
-            GL.Uniform4(shader.uniform_acol, new Vector4(1f, 0f, 0f, 1f));
-            GL.Uniform4(shader.uniform_mcol, new Vector4(1f, 1f, 1f, 1f));
+            GL.Uniform4(shader.uniform_acol, ambientColor);
+            GL.Uniform4(shader.uniform_mcol, this.materialColor);
 
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);
