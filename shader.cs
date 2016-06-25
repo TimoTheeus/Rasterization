@@ -15,6 +15,7 @@ public class Shader
     public int uniform_acol;
     public int uniform_mcol;
     public int uniform_scol;
+    public int uniform_lpos;
 
 	// constructor
 	public Shader( String vertexShader, String fragmentShader )
@@ -32,8 +33,9 @@ public class Shader
 		attribute_vuvs = GL.GetAttribLocation( programID, "vUV" );
 		uniform_mview = GL.GetUniformLocation( programID, "transform" );
         uniform_acol = GL.GetUniformLocation( programID, "ambientCol");
-        uniform_mcol = GL.GetUniformLocation(programID, "materialCol");
-        uniform_scol = GL.GetUniformLocation(programID, "specularCol");
+        uniform_mcol = GL.GetUniformLocation( programID, "materialCol");
+        uniform_scol = GL.GetUniformLocation( programID, "specularCol");
+        uniform_lpos = GL.GetUniformLocation( programID, "lightPosition");
         }
 
 	// loading shaders

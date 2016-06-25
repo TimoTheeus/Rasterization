@@ -10,12 +10,12 @@ namespace Template_P3
     public class Light
     {
         //member variables
-        public Vector3 location;
+        public Vector4 location;
         public Vector3 intensity;
        
 
         //constructor
-        public Light(Vector3 loc, Vector3 i)
+        public Light(Vector4 loc, Vector3 i)
         {
             location = loc;
             intensity = i;
