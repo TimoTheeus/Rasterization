@@ -13,6 +13,7 @@ public class Shader
 	public int attribute_vuvs;
 	public int uniform_mview;
     public int uniform_acol;
+    public int uniform_mcol;
 
 	// constructor
 	public Shader( String vertexShader, String fragmentShader )
@@ -30,6 +31,7 @@ public class Shader
 		attribute_vuvs = GL.GetAttribLocation( programID, "vUV" );
 		uniform_mview = GL.GetUniformLocation( programID, "transform" );
         uniform_acol = GL.GetUniformLocation( programID, "ambientCol");
+        uniform_mcol = GL.GetUniformLocation(programID, "materialCol");
 	}
 
 	// loading shaders
