@@ -17,16 +17,22 @@ namespace Template_P3
         int vertexBufferId;                     // vertex buffer
         int triangleBufferId;                   // triangle buffer
         int quadBufferId;                       // quad buffer
-        Vector4 materialColor;
-        Vector4 specularColor;
+        Vector3 ambientReflect;
+        Vector3 diffuseReflect;
+        Vector3 specularReflect;
+        Vector3 materialColor;
+        float matShiny;
 
         // constructor
         public Mesh(Vector3 position, float scale, string fileName) : base (position, scale)
         {
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);
-            materialColor = new Vector4(1f, 1f, 0f, 1f);
-            specularColor = new Vector4(1f, 1f, 0f, 1f);
+            ambientReflect = new Vector3(1,1,1);
+            diffuseReflect = new Vector3(1,1,1);
+            specularReflect = new Vector3(1,1,1);
+            materialColor = new Vector3(1, 0, 0);
+            matShiny = 64;
         }
 
         
@@ -73,12 +79,23 @@ namespace Template_P3
             // pass transform to vertex shader
             GL.UniformMatrix4(shader.uniform_mview, false, ref this.viewMatrix);
 
-            GL.Uniform4(shader.uniform_mcol, this.materialColor);
-            GL.Uniform4(shader.uniform_acol, this.ambientColor);
-            GL.Uniform4(shader.uniform_scol, this.specularColor);
-            GL.Uniform4(shader.uniform_lpos, this.singleLight.location);
+
+
+            GL.Uniform3(shader.uniform_lpos, this.singleLight.location);
             GL.Uniform3(shader.uniform_cpos, Game.camPos);
 
+            GL.Uniform3(shader.uniform_aint, this.singleLight.ambientIntensity);
+            GL.Uniform3(shader.uniform_dint, this.singleLight.diffuseIntensity);
+            GL.Uniform3(shader.uniform_sint, this.singleLight.specularIntensity);
+
+            //GL.Uniform3(shader.uniform_arefl, this.ambientReflect);
+            //GL.Uniform3(shader.uniform_drefl, this.diffuseReflect);
+            //GL.Uniform3(shader.uniform_srefl, this.specularReflect);
+            GL.Uniform3(shader.uniform_mcol, this.materialColor);
+
+            GL.Uniform1(shader.uniform_mshiny, this.matShiny);
+
+            
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);
             GL.EnableVertexAttribArray(shader.attribute_vnrm);

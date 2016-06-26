@@ -10,15 +10,19 @@ namespace Template_P3
     public class Light
     {
         //member variables
-        public Vector4 location;
-        public Vector3 intensity;
-       
+        public Vector3 location;
+        public Vector3 ambientIntensity;
+        public Vector3 diffuseIntensity;
+        public Vector3 specularIntensity;
+
 
         //constructor
-        public Light(Vector4 loc, Vector3 i)
+        public Light(Vector3 loc, Vector3 ambient, Vector3 diffuse, Vector3 specular)
         {
             location = loc;
-            intensity = i;
+            ambientIntensity = ambient;
+            diffuseIntensity = diffuse;
+            specularIntensity = specular;
         }
     }
 }
