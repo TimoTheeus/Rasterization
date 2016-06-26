@@ -38,8 +38,8 @@ vec3 diffuseLighting(in vec3 L, in vec3 V, in vec3 N)
 	float phongExp = 2;
 
 	vec3 cDiff = matColor+matColor*pow(dot(-V,R), phongExp);
-	float lDiff = 1/dot(L,L);
-	return  vec3(clamp(cDiff.x*NdotL*lDiff, 0, 1), clamp(cDiff.y*NdotL*lDiff, 0, 1), clamp(cDiff.z*NdotL*lDiff, 0, 1));
+	vec3 lDiff = lightDiffuseIntensity/dot(L,L);
+	return  vec3(clamp(cDiff.x*NdotL*lDiff.x, 0, 1), clamp(cDiff.y*NdotL*lDiff.y, 0, 1), clamp(cDiff.z*NdotL*lDiff.z, 0, 1));
 }
 
 //vec3 specularLighting(in vec3 N, in vec3 L, in vec3 V)

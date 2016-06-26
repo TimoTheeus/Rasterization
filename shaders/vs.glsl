@@ -29,5 +29,5 @@ void main()
 	uv = vUV;
 
 	toLight = (transform * vec4( vPosition , 1.0 ) - cameraTransformMatrix * vec4(lightPosition, 1.0)).xyz;
-	toCamera = (transform * vec4( vPosition - cameraPosition, 1.0 )).xyz;
+	toCamera = (transform * vec4( vPosition, 1.0 )).xyz-cameraPosition;
 }

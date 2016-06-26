@@ -22,6 +22,7 @@ namespace Template_P3
         SceneGraph root;
         Matrix4 camtransMatrix;
         Matrix4 camrotMatrixX, camrotMatrixY;
+        Matrix4 fullcamMatrix;
         Vector3 camPos;
         Vector3 camRot;
         float moveSpeed = 0.2f;
@@ -96,6 +97,7 @@ namespace Template_P3
 
             camrotMatrixY = Matrix4.CreateRotationY(camRot.Y);
             camrotMatrixX = Matrix4.CreateRotationX(camRot.X);
+            fullcamMatrix = camrotMatrixX * camrotMatrixY * camtransMatrix;
         }
 
         // tick for OpenGL rendering code
@@ -122,7 +124,7 @@ namespace Template_P3
 
 
             GL.Uniform3(shader.uniform_cpos, camPos);
-            GL.UniformMatrix4(shader.uniform_ctransm, false, ref camtransMatrix);
+            GL.UniformMatrix4(shader.uniform_ctransm, false, ref fullcamMatrix);
 
             // render scene
             //mesh.Render( shader, transform, wood );
