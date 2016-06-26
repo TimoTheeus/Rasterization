@@ -22,7 +22,7 @@ namespace Template_P3
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
             singleLight = new Light(new Vector4(1, 1, 1, 1), new Vector3(50f, 50f, 50f));
-            ambientColor = new Vector4(0f, 0f, 1f, 1f);
+            ambientColor = new Vector4(0.7f, 0.7f, 0.7f, 1f);
         }
         //Update the viewmatrix of parent and children based on a transformMatrix
         public virtual void Update(Matrix4 transformMatrix)
