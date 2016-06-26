@@ -2,6 +2,7 @@
 using OpenTK;
 using System;
 using OpenTK.Input;
+using OpenTK.Graphics.OpenGL;
 // minimal OpenTK rendering framework for UU/INFOGR
 // Jacco Bikker, 2016
 
@@ -21,9 +22,9 @@ namespace Template_P3
         SceneGraph root;
         Matrix4 camtransMatrix;
         Matrix4 camrotMatrixX, camrotMatrixY;
-        public static Vector3 camPos;
+        Vector3 camPos;
         Vector3 camRot;
-        float moveSpeed = 0.03f;
+        float moveSpeed = 0.2f;
         float rotSpeed = 0.03f;
 
         // initialize
@@ -118,6 +119,10 @@ namespace Template_P3
             if (a > 2 * PI) a -= 2 * PI;
 
             Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1f, 0), a);
+
+
+            GL.Uniform3(shader.uniform_cpos, camPos);
+            GL.UniformMatrix4(shader.uniform_ctransm, false, ref camtransMatrix);
 
             // render scene
             //mesh.Render( shader, transform, wood );

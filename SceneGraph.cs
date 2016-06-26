@@ -20,7 +20,7 @@ namespace Template_P3
             children = new List<SceneGraph>();
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
-            singleLight = new Light(new Vector3(1, 1, 1), new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 0f), new Vector3(1f, 1f, 1f));
+            singleLight = new Light(new Vector3(1,1,1), new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 0f), new Vector3(1f, 1f, 1f));
         }
         //Update the viewmatrix of parent and children based on a transformMatrix
         public virtual void Update(Matrix4 transformMatrix)

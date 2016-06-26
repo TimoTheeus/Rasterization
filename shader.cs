@@ -15,6 +15,7 @@ namespace Template_P3
         public int uniform_mview;
 
         public int uniform_cpos;
+        public int uniform_ctransm;
         public int uniform_lpos;
 
         public int uniform_aint;
@@ -44,6 +45,7 @@ namespace Template_P3
             uniform_mview = GL.GetUniformLocation(programID, "transform");
 
             uniform_cpos = GL.GetUniformLocation(programID, "cameraPosition");
+            uniform_ctransm = GL.GetUniformLocation(programID, "cameraTransformMatrix");
             uniform_lpos = GL.GetUniformLocation(programID, "lightPosition");
 
             uniform_aint = GL.GetUniformLocation(programID, "lightAmbientIntensity");

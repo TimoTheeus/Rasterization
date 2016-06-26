@@ -6,8 +6,6 @@ in vec4 normal;					// interpolated normal
 
 uniform sampler2D pixels;		// texture sampler
 
-
-
 uniform vec3 lightAmbientIntensity; // = vec3(0.6, 0.3, 0)
 uniform vec3 lightDiffuseIntensity; // = vec3(1, 0.5, 0)
 uniform vec3 lightSpecularIntensity; //// = vec3(0, 1, 0)
@@ -20,7 +18,6 @@ uniform float matShininess; // = 64
 
 in vec3 toLight;
 in vec3 toCamera;
-
 
 
 // shader output
@@ -69,6 +66,6 @@ void main()
 
 	vec4 diffuseColor = texture( pixels, uv ) + 0.5f * (normal.xyz, 1);
 
-	outputColor.xyz = diffuseColor.xyz * (Iamb + Idif);
-	outputColor.a = 1;
+	vec3 temp = diffuseColor.xyz * (Iamb + Idif);
+	outputColor = vec4(temp, 1.0);
 }

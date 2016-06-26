@@ -82,7 +82,6 @@ namespace Template_P3
 
 
             GL.Uniform3(shader.uniform_lpos, this.singleLight.location);
-            GL.Uniform3(shader.uniform_cpos, Game.camPos);
 
             GL.Uniform3(shader.uniform_aint, this.singleLight.ambientIntensity);
             GL.Uniform3(shader.uniform_dint, this.singleLight.diffuseIntensity);
