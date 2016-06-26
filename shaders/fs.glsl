@@ -34,10 +34,10 @@ vec3 diffuseLighting(in vec3 L, in vec3 V, in vec3 N)
 {
 
 	float NdotL = clamp(dot(normalize(-N),normalize(L)), 0, 1);
-	vec3 R = normalize(L-2*NdotL*N);
-	float phongExp = 2;
+	//vec3 R = normalize(L-2*NdotL*N);
+	//float phongExp = 2;
 
-	vec3 cDiff = matColor+matColor*pow(dot(-V,R), phongExp);
+	vec3 cDiff = matColor;//+matColor*pow(dot(-normalize(V),R), phongExp);
 	vec3 lDiff = lightDiffuseIntensity/dot(L,L);
 	return  vec3(clamp(cDiff.x*NdotL*lDiff.x, 0, 1), clamp(cDiff.y*NdotL*lDiff.y, 0, 1), clamp(cDiff.z*NdotL*lDiff.z, 0, 1));
 }
@@ -64,8 +64,8 @@ void main()
 	vec3 Idif = diffuseLighting(L, V, N);
 	//vec3 Ispe = specularLighting(N, L, V);
 
-	vec4 diffuseColor = texture( pixels, uv ) + 0.5f * (normal.xyz, 1);
+	vec4 diffuseColor = texture( pixels, uv );
 
 	vec3 temp = diffuseColor.xyz * (Iamb + Idif);
-	outputColor = vec4(temp, 1.0);
+	outputColor = diffuseColor*vec4(Idif, 1.0);
 }

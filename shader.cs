@@ -27,7 +27,7 @@ namespace Template_P3
         public int uniform_srefl;
         public int uniform_mcol;
         public int uniform_mshiny;
-
+        public int uniform_rotm;
         // constructor
         public Shader(String vertexShader, String fragmentShader)
         {
@@ -45,9 +45,8 @@ namespace Template_P3
             uniform_mview = GL.GetUniformLocation(programID, "transform");
 
             uniform_cpos = GL.GetUniformLocation(programID, "cameraPosition");
-            uniform_ctransm = GL.GetUniformLocation(programID, "cameraTransformMatrix");
             uniform_lpos = GL.GetUniformLocation(programID, "lightPosition");
-
+            uniform_rotm = GL.GetUniformLocation(programID, "rotationMatrix");
             uniform_aint = GL.GetUniformLocation(programID, "lightAmbientIntensity");
             uniform_dint = GL.GetUniformLocation(programID, "lightDiffuseIntensity");
             uniform_sint = GL.GetUniformLocation(programID, "lightSpecularIntensity");
@@ -57,8 +56,6 @@ namespace Template_P3
             //uniform_srefl = GL.GetUniformLocation( programID, "matSpecularReflectance");
             uniform_mcol = GL.GetUniformLocation(programID, "matColor");
             uniform_mshiny = GL.GetUniformLocation(programID, "matShininess");
-
-
         }
 
         // loading shaders

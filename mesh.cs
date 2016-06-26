@@ -77,8 +77,8 @@ namespace Template_P3
             GL.UseProgram(shader.programID);
 
             // pass transform to vertex shader
-            GL.UniformMatrix4(shader.uniform_mview, false, ref this.viewMatrix);
-
+            GL.UniformMatrix4(shader.uniform_mview, false, ref viewMatrix);
+                 GL.UniformMatrix4(shader.uniform_rotm, false, ref this.rotationMatrix);
 
 
             GL.Uniform3(shader.uniform_lpos, this.singleLight.location);

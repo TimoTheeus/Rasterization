@@ -13,14 +13,16 @@ namespace Template_P3
         public Matrix4 transform;
         public Matrix4 viewMatrix;
         public Matrix4 originalMatrix;
+        public Matrix4 rotationMatrix;
         public Light singleLight;
 
         public SceneGraph(Vector3 position, float scale)
         {
             children = new List<SceneGraph>();
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
+            rotationMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
-            singleLight = new Light(new Vector3(1,1,1), new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 0f), new Vector3(1f, 1f, 1f));
+            singleLight = new Light(new Vector3(0f,7f,-5f), new Vector3(0f, 0f, 0f), new Vector3(200f, 200f, 200f), new Vector3(1f, 1f, 1f));
         }
         //Update the viewmatrix of parent and children based on a transformMatrix
         public virtual void Update(Matrix4 transformMatrix)
@@ -51,6 +53,7 @@ namespace Template_P3
         }
         public void Input(Matrix4 transformMatrix)
         {
+            this.rotationMatrix *= transformMatrix;
             foreach (SceneGraph child in this.children)
             {
                 child.Input(transformMatrix);
@@ -59,6 +62,7 @@ namespace Template_P3
         public void ResetViewMatrices()
         {
             this.viewMatrix = originalMatrix;
+            this.rotationMatrix = originalMatrix;
             foreach (SceneGraph child in this.children)
             {
                 child.ResetViewMatrices();
