@@ -24,18 +24,18 @@ namespace Template_P3
         float matShiny;
 
         // constructor
-        public Mesh(Vector3 position, float scale, string fileName) : base (position, scale)
+        public Mesh(Vector3 position, float scale, string fileName) : base(position, scale)
         {
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);
-            ambientReflect = new Vector3(1,1,1);
-            diffuseReflect = new Vector3(1,1,1);
-            specularReflect = new Vector3(1,1,1);
+            ambientReflect = new Vector3(1, 1, 1);
+            diffuseReflect = new Vector3(1, 1, 1);
+            specularReflect = new Vector3(1, 1, 1);
             materialColor = new Vector3(1, 0, 0);
             matShiny = 64;
         }
 
-        
+
         // initialization; called during first render
         public void Prepare(Shader shader)
         {
@@ -95,7 +95,7 @@ namespace Template_P3
 
             GL.Uniform1(shader.uniform_mshiny, this.matShiny);
 
-            
+
             // enable position, normal and uv attributes
             GL.EnableVertexAttribArray(shader.attribute_vpos);
             GL.EnableVertexAttribArray(shader.attribute_vnrm);
@@ -125,7 +125,7 @@ namespace Template_P3
             // restore previous OpenGL state
             GL.UseProgram(0);
             GL.PopClientAttrib();
-            base.Render(shader,texture);
+            base.Render(shader, texture);
         }
 
         // layout of a single vertex
