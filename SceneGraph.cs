@@ -24,7 +24,11 @@ namespace Template_P3
             singleLight = new Light(new Vector3(1, 1, 1), new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 0f), new Vector3(1f, 1f, 1f));
 =======
             singleLight = new Light(new Vector4(1, 1, 1, 1), new Vector3(50f, 50f, 50f));
+<<<<<<< HEAD
             ambientColor = new Vector4(0.7f, 0.7f, 0.7f, 1f);
+>>>>>>> origin/master
+=======
+            ambientColor = new Vector4(0f, 0f, 1f, 1f);
 >>>>>>> origin/master
         }
         //Update the viewmatrix of parent and children based on a transformMatrix

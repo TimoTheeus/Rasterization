@@ -22,8 +22,12 @@ void main()
 	// transform vertex using supplied matrix
 	gl_Position = transform * vec4(vPosition, 1.0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	fPosition = transform*vec4(vPosition,1.0);
+>>>>>>> origin/master
+=======
+	fPosition = vec4(vPosition, 1.0);
 >>>>>>> origin/master
 
 	// forward normal and uv coordinate; will be interpolated over triangle

@@ -30,7 +30,10 @@ uniform vec4 materialCol;
 uniform vec4 specularCol;
 uniform vec4 lightPosition;
 uniform vec3 cameraPosition;
+<<<<<<< HEAD
 const vec4 lightCol=vec4(50f,50f,50f,1.0f);
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 // shader output
@@ -70,6 +73,7 @@ vec3 diffuseLighting(in vec3 L, in vec3 V, in vec3 N)
 void main()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	vec3 L = toLight;
 	vec3 V = toCamera;
 	vec3 N = normal.xyz;
@@ -84,16 +88,16 @@ void main()
 	outputColor.a = 1;
 =======
 	float phongExponent=2;
+=======
+>>>>>>> origin/master
 	// L
-	vec3 L= (fPosition - lightPosition).xyz;
+	vec4 L= fPosition - lightPosition;
 	// V
-	vec3 V= cameraPosition-fPosition.xyz;
+	vec4 V= fPosition - vec4(cameraPosition, 1.0);
 
-	//NdotL
-	float NdotL=dot(normal.xyz,L);
-        //cAmbient
-	vec4 cAmbient=materialCol*ambientCol;
+    outputColor = texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
 
+<<<<<<< HEAD
 	//R
    	vec3 R=L-2*NdotL*normal.xyz;
 
@@ -106,5 +110,11 @@ void main()
 
     	outputColor = texture( pixels, uv ) + 0.5f * vec4( normal.xyz, 1 );
     	outputColor = cAmbient;  	
+>>>>>>> origin/master
+=======
+    outputColor *= V;
+    vec3 LtoVector3= L.xyz;
+    vec3 reflectedDirection=LtoVector3-2*dot(LtoVector3,normal.xyz)*normal.xyz;
+    vec4 R = vec4(reflectedDirection.xyz,1);
 >>>>>>> origin/master
 }
