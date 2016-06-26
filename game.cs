@@ -23,7 +23,7 @@ namespace Template_P3
         Matrix4 camrotMatrixX, camrotMatrixY;
         public static Vector3 camPos;
         Vector3 camRot;
-        float moveSpeed = 0.2f;
+        float moveSpeed = 0.03f;
         float rotSpeed = 0.03f;
 
         // initialize
