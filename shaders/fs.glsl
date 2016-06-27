@@ -41,10 +41,10 @@ vec3 diffuseLighting(in vec3 L, in vec3 N)
 
 vec3 specularLighting(in vec3 N, in vec3 L, in vec3 V)
 {
-	float phongExp=1f;
+	float phongExp=3f;
 	float NdotL = clamp(dot(normalize(-N),normalize(L)), 0, 1);
-	vec3 R = normalize(L-2*NdotL*N);//normalize(reflect(-L,N))
-	float RdotV = clamp(dot(R,normalize(V)),0,1);
+	vec3 R = normalize(reflect(-L,N));
+	float RdotV = max(dot(R,normalize(V)),0);
 	vec3 Is= matSpecularReflectance *lightSpecularIntensity*pow(RdotV,phongExp);
 	return Is;
 }
@@ -61,6 +61,6 @@ void main()
 
 	vec4 diffuseColor = texture( pixels, uv );
 
-	vec3 temp = vec3(clamp((Iamb.x + Idif.x+Ispe.x)*diffuseColor.x,0,1),clamp((Iamb.y + Idif.y+Ispe.y)*diffuseColor.y,0,1),clamp((Iamb.z + Idif.z+Ispe.z)*diffuseColor.z,0,1));//diffuseColor.xyz * (Iamb + Idif+Ispe);
-	outputColor =vec4(temp, 1.0);
+	vec3 temp = vec3(clamp((Iamb.x + Idif.x+Ispe.x),0,1),clamp((Iamb.y + Idif.y+Ispe.y),0,1),clamp((Iamb.z + Idif.z+Ispe.z),0,1));
+	outputColor=vec4(temp, 1.0f);
 }

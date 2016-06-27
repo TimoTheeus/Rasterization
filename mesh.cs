@@ -94,6 +94,7 @@ namespace Template_P3
             //GL.Uniform3(shader.uniform_drefl, this.diffuseReflect);
             //GL.Uniform3(shader.uniform_srefl, this.specularReflect);
             GL.Uniform3(shader.uniform_mcol, this.materialColor);
+             GL.Uniform3(shader.uniform_crot, Game.viewDirection);
 
             GL.Uniform1(shader.uniform_mshiny, this.matShiny);
 

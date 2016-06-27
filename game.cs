@@ -24,6 +24,7 @@ namespace Template_P3
         Matrix4 camrotMatrixX, camrotMatrixY,fullcamRot;
         Vector3 camPos;
         Vector3 camRot;
+        public static Vector3 viewDirection; //hopelijk dan..
         float moveSpeed = 0.2f;
         float rotSpeed = 0.03f;
 
@@ -96,7 +97,8 @@ namespace Template_P3
 
             camrotMatrixY = Matrix4.CreateRotationY(camRot.Y);
             camrotMatrixX = Matrix4.CreateRotationX(camRot.X);
-            fullcamRot = camrotMatrixX * camrotMatrixY*camtransMatrix;
+            fullcamRot = camrotMatrixX * camrotMatrixY;
+            viewDirection = fullcamRot.Row2.Xyz;
         }
 
         // tick for OpenGL rendering code
@@ -122,7 +124,6 @@ namespace Template_P3
             Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
 
             GL.Uniform3(shader.uniform_cpos, camPos);
-            GL.UniformMatrix4(shader.uniform_crot, false, ref fullcamRot);
             // render scene
             floor.Update(transform2);
             root.Update(transform);

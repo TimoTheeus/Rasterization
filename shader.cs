@@ -46,7 +46,7 @@ namespace Template_P3
             uniform_mview = GL.GetUniformLocation(programID, "transform");
 
             uniform_cpos = GL.GetUniformLocation(programID, "cameraPosition");
-            uniform_crot = GL.GetUniformLocation(programID, "cameraRotation");
+            uniform_crot = GL.GetUniformLocation(programID, "viewDirection");
             uniform_lpos = GL.GetUniformLocation(programID, "lightPosition");
             uniform_rotm = GL.GetUniformLocation(programID, "rotationMatrix");
             uniform_aint = GL.GetUniformLocation(programID, "lightAmbientIntensity");
