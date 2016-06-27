@@ -4,16 +4,16 @@
 in vec2 vUV;				// vertex uv coordinate
 in vec3 vNormal;			// untransformed vertex normal
 in vec3 vPosition;			// untransformed vertex position
-
-// shader output
-out vec4 normal;			// transformed vertex normal
-out vec2 uv;				
+			
 uniform mat4 transform;
-uniform mat4 rotationMatrix;
 
 uniform vec3 viewDirection;
 uniform vec3 lightPosition;
-uniform vec3 cameraPosition;
+uniform mat4 rotationMatrix;
+
+// shader output
+out vec4 normal;			// transformed vertex normal
+out vec2 uv;
 
 out vec3 toLight;
 out vec3 toCamera;
@@ -29,5 +29,5 @@ void main()
 	uv = vUV;
 
 	toLight = (rotationMatrix * vec4( vPosition , 1.0 ) - vec4(lightPosition, 1.0)).xyz;
-        toCamera=viewDirection;
+    toCamera = viewDirection;
 }

@@ -22,6 +22,7 @@ namespace Template_P3
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             rotationMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             originalMatrix = viewMatrix;
+
             singleLight = new Light(new Vector3(0f,7f,-5f), new Vector3(0.3f, 0.3f, 0.3f), new Vector3(200f, 200f, 200f), new Vector3(0.7f, 0.7f, 0.7f));
         }
         //Update the viewmatrix of parent and children based on a transformMatrix

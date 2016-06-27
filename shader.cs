@@ -14,21 +14,19 @@ namespace Template_P3
         public int attribute_vuvs;
         public int uniform_mview;
 
-        public int uniform_cpos;
-        public int uniform_ctransm;
+        public int uniform_crot;
         public int uniform_lpos;
+        public int uniform_rotm;
 
         public int uniform_aint;
         public int uniform_dint;
         public int uniform_sint;
-
+        
         public int uniform_arefl;
         public int uniform_drefl;
         public int uniform_srefl;
-        public int uniform_mcol;
         public int uniform_mshiny;
-        public int uniform_rotm;
-        public int uniform_crot;
+
         // constructor
         public Shader(String vertexShader, String fragmentShader)
         {
@@ -44,18 +42,18 @@ namespace Template_P3
             attribute_vnrm = GL.GetAttribLocation(programID, "vNormal");
             attribute_vuvs = GL.GetAttribLocation(programID, "vUV");
             uniform_mview = GL.GetUniformLocation(programID, "transform");
-
-            uniform_cpos = GL.GetUniformLocation(programID, "cameraPosition");
+            
             uniform_crot = GL.GetUniformLocation(programID, "viewDirection");
             uniform_lpos = GL.GetUniformLocation(programID, "lightPosition");
             uniform_rotm = GL.GetUniformLocation(programID, "rotationMatrix");
+
             uniform_aint = GL.GetUniformLocation(programID, "lightAmbientIntensity");
             uniform_dint = GL.GetUniformLocation(programID, "lightDiffuseIntensity");
             uniform_sint = GL.GetUniformLocation(programID, "lightSpecularIntensity");
-            uniform_arefl = GL.GetUniformLocation( programID, "matAmbientReflectance");
-            uniform_drefl = GL.GetUniformLocation( programID, "matDiffuseReflectance");
-            uniform_srefl = GL.GetUniformLocation( programID, "matSpecularReflectance");
-            uniform_mcol = GL.GetUniformLocation(programID, "matColor");
+            
+            uniform_arefl = GL.GetUniformLocation(programID, "matAmbientReflectance");
+            uniform_drefl = GL.GetUniformLocation(programID, "matDiffuseReflectance");
+            uniform_srefl = GL.GetUniformLocation(programID, "matSpecularReflectance");
             uniform_mshiny = GL.GetUniformLocation(programID, "matShininess");
         }
 

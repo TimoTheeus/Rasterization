@@ -24,7 +24,7 @@ namespace Template_P3
         Matrix4 camrotMatrixX, camrotMatrixY,fullcamRot;
         Vector3 camPos;
         Vector3 camRot;
-        public static Vector3 viewDirection; //hopelijk dan..
+        public static Vector3 viewDirection;
         float moveSpeed = 0.2f;
         float rotSpeed = 0.03f;
 
@@ -60,6 +60,8 @@ namespace Template_P3
         public void Tick()
         {
             screen.Clear(0);
+
+            //camera movement
             if (Keyboard.GetState().IsKeyDown(Key.S))
             {
                 camPos.Z -= moveSpeed * timer.ElapsedMilliseconds * (float)Math.Cos(camRot.Y) * (float)Math.Cos(camRot.X);
@@ -85,7 +87,7 @@ namespace Template_P3
             }               
             camtransMatrix = Matrix4.CreateTranslation(0 + camPos.X, -4 + camPos.Y, -15 + camPos.Z);
 
-
+            //camera rotation
             if (Keyboard.GetState().IsKeyDown(Key.Left))
                 camRot.Y -= rotSpeed;
             if (Keyboard.GetState().IsKeyDown(Key.Right))
@@ -122,8 +124,7 @@ namespace Template_P3
             if (a > 2 * PI) a -= 2 * PI;
 
             Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
-
-            GL.Uniform3(shader.uniform_cpos, camPos);
+            
             // render scene
             floor.Update(transform2);
             root.Update(transform);

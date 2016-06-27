@@ -17,10 +17,10 @@ namespace Template_P3
         int vertexBufferId;                     // vertex buffer
         int triangleBufferId;                   // triangle buffer
         int quadBufferId;                       // quad buffer
+        
         Vector3 ambientReflect;
         Vector3 diffuseReflect;
         Vector3 specularReflect;
-        Vector3 materialColor;
         float matShiny;
 
         // constructor
@@ -28,10 +28,10 @@ namespace Template_P3
         {
             MeshLoader loader = new MeshLoader();
             loader.Load(this, fileName);
-            ambientReflect = new Vector3(1, 0f, 0f);
-            diffuseReflect = new Vector3(1, 0, 0);
+            
+            ambientReflect = new Vector3(0f, 0.5f, 1f);
+            diffuseReflect = new Vector3(1f, 0.41f, 0.71f);
             specularReflect = new Vector3(1f, 1f, 1f);
-            materialColor = new Vector3(1, 0, 0);
             matShiny = 64;
         }
 
@@ -78,24 +78,19 @@ namespace Template_P3
 
             // pass transform to vertex shader
             GL.UniformMatrix4(shader.uniform_mview, false, ref viewMatrix);
-                 GL.UniformMatrix4(shader.uniform_rotm, false, ref this.rotationMatrix);
 
-
+            //pass variables to vertex and fragment shader
+            GL.Uniform3(shader.uniform_crot, Game.viewDirection);
             GL.Uniform3(shader.uniform_lpos, this.singleLight.location);
+            GL.UniformMatrix4(shader.uniform_rotm, false, ref this.rotationMatrix);
 
             GL.Uniform3(shader.uniform_aint, this.singleLight.ambientIntensity);
             GL.Uniform3(shader.uniform_dint, this.singleLight.diffuseIntensity);
             GL.Uniform3(shader.uniform_sint, this.singleLight.specularIntensity);
-            GL.Uniform3(shader.uniform_drefl, ref this.diffuseReflect);
+            
             GL.Uniform3(shader.uniform_srefl, ref this.specularReflect);
+            GL.Uniform3(shader.uniform_drefl, ref this.diffuseReflect);
             GL.Uniform3(shader.uniform_arefl, ref this.ambientReflect);
-
-            //GL.Uniform3(shader.uniform_arefl, this.ambientReflect);
-            //GL.Uniform3(shader.uniform_drefl, this.diffuseReflect);
-            //GL.Uniform3(shader.uniform_srefl, this.specularReflect);
-            GL.Uniform3(shader.uniform_mcol, this.materialColor);
-             GL.Uniform3(shader.uniform_crot, Game.viewDirection);
-
             GL.Uniform1(shader.uniform_mshiny, this.matShiny);
 
 
