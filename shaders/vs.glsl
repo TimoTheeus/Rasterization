@@ -10,7 +10,7 @@ out vec4 normal;			// transformed vertex normal
 out vec2 uv;				
 uniform mat4 transform;
 uniform mat4 rotationMatrix;
-
+uniform mat4 cameraRotation;
 
 uniform vec3 lightPosition;
 uniform vec3 cameraPosition;
@@ -29,5 +29,6 @@ void main()
 	uv = vUV;
 
 	toLight = (rotationMatrix * vec4( vPosition , 1.0 ) - vec4(lightPosition, 1.0)).xyz;
-	toCamera = (transform * vec4( vPosition, 1.0 )).xyz-cameraPosition;
+	toCamera = (rotationMatrix * vec4( vPosition, 1.0 )).xyz-cameraPosition;//(cameraRotation*vec4(0,0,-1,1.0)).xyz;
+        //toCamera=(vec4(-cameraPosition,1.0)* cameraRotation).xyz;
 }
