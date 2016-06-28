@@ -135,15 +135,15 @@ namespace Template_P3
             //fov aspect ratio, near Z plane, far Z plane
             transform *= Matrix4.CreatePerspectiveFieldOfView(1.2f, 1.3f, .1f, 1000f);
             // update rotation
-            a += 0.001f * frameDuration;
+            a += 0.0001f * frameDuration;
             if (a > 2 * PI) a -= 2 * PI;
 
             Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
             // render scene
-            //foreach (Mesh m in mesh.children)
-            //{
-            //    m.Update(transform2);
-            //}
+            foreach (Mesh m in mesh.children)
+            {
+                    m.Update(Matrix4.CreateRotationY(a*-5));
+            }
 
             root.Update(transform);
             floor.Input(transform2);
