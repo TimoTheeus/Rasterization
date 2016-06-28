@@ -143,6 +143,7 @@ namespace Template_P3
             foreach (Mesh m in mesh.children)
             {
                     m.Update(Matrix4.CreateRotationY(a*-5));
+                    m.Input(Matrix4.CreateRotationY(a * -5));
             }
 
             root.Update(transform);
