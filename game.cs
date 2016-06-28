@@ -13,7 +13,7 @@ namespace Template_P3
     {
         // member variables
         public Surface screen;                  // background surface for printing etc.
-        Mesh mesh,mesh2,mesh3,mesh4,mesh5,mesh6, floor;                       // a mesh to draw using OpenGL
+        Mesh mesh, text, floor;                       // a mesh to draw using OpenGL
         const float PI = 3.1415926535f;         // PI
         float a = 0;                            // teapot rotation angle
         Stopwatch timer;                        // timer for measuring frame duration
@@ -34,6 +34,7 @@ namespace Template_P3
             // load teapot
             mesh = new Mesh(new Vector3(0,0,0), 1,  "../../assets/teapot.obj");
             floor = new Mesh(new Vector3(0, 0, 0), 1, "../../assets/floor.obj");
+            text = new Mesh(new Vector3(0, 10, 0), 1, "../../assets/text.obj");
             // initialize stopwatch
             timer = new Stopwatch();
             timer.Reset();
@@ -45,23 +46,24 @@ namespace Template_P3
             root = new SceneGraph(new Vector3(0,1,0), 1);
             root.AddChildNode(mesh);
             mesh.AddChildNode(floor);
+            mesh.AddChildNode(text);
             AddTeapots(mesh, 1);
         }
 
         public void AddTeapots(SceneGraph parent, int children)
         {
             int childs = children;
-            Mesh m1 = new Mesh(parent.pos + new Vector3(-10/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
-            Mesh m2 = new Mesh(parent.pos + new Vector3(10/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
-            Mesh m3 = new Mesh(parent.pos + new Vector3(0, 0, -10/childs), 0.5f/childs, "../../assets/teapot.obj");
-            Mesh m4 = new Mesh(parent.pos + new Vector3(0, 0, 10/childs), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m1 = new Mesh(parent.pos + new Vector3(-13/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m2 = new Mesh(parent.pos + new Vector3(13/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m3 = new Mesh(parent.pos + new Vector3(0, 0, -13/childs), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m4 = new Mesh(parent.pos + new Vector3(0, 0, 13/childs), 0.5f/childs, "../../assets/teapot.obj");
 
             parent.AddChildNode(m1);
             parent.AddChildNode(m2);
             parent.AddChildNode(m3);
             parent.AddChildNode(m4);
 
-            if (childs < 3)
+            if (childs < 2)
             {
                 AddTeapots(m1, childs+1);
                 AddTeapots(m2, childs+1);
@@ -133,24 +135,15 @@ namespace Template_P3
             //fov aspect ratio, near Z plane, far Z plane
             transform *= Matrix4.CreatePerspectiveFieldOfView(1.2f, 1.3f, .1f, 1000f);
             // update rotation
-            a += 0.0002f * frameDuration;
+            a += 0.001f * frameDuration;
             if (a > 2 * PI) a -= 2 * PI;
 
-            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), 5*a);
-            
+            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
             // render scene
-            foreach (Mesh m in mesh.children)
-            {
-                foreach (Mesh child in m.children)
-                {
-                    child.Update(transform2);
-                }
-
-            }
-            foreach (Mesh m in mesh.children)
-            {
-                m.Update(transform2);
-            }
+            //foreach (Mesh m in mesh.children)
+            //{
+            //    m.Update(transform2);
+            //}
 
             root.Update(transform);
             floor.Input(transform2);
