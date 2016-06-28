@@ -15,9 +15,11 @@ namespace Template_P3
         public Matrix4 originalMatrix;
         public Matrix4 rotationMatrix;
         public Light singleLight;
+        public Vector3 pos;
 
         public SceneGraph(Vector3 position, float scale)
         {
+            pos = position;
             children = new List<SceneGraph>();
             viewMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);
             rotationMatrix = Matrix4.CreateTranslation(position / scale) * Matrix4.CreateScale(scale);

@@ -34,11 +34,6 @@ namespace Template_P3
             // load teapot
             mesh = new Mesh(new Vector3(0,0,0), 1,  "../../assets/teapot.obj");
             floor = new Mesh(new Vector3(0, 0, 0), 1, "../../assets/floor.obj");
-            mesh2 = new Mesh(new Vector3(0, 8, 0), 0.1f, "../../assets/teapot.obj");
-            mesh3 = new Mesh(new Vector3(2, 6, 2), 0.1f, "../../assets/teapot.obj");
-            mesh4 = new Mesh(new Vector3(-2, 6, -2), 0.1f, "../../assets/teapot.obj");
-            mesh5 = new Mesh(new Vector3(-2, 6, 2), 0.1f, "../../assets/teapot.obj");
-            mesh6 = new Mesh(new Vector3(2, 6, -2), 0.1f, "../../assets/teapot.obj");
             // initialize stopwatch
             timer = new Stopwatch();
             timer.Reset();
@@ -49,12 +44,30 @@ namespace Template_P3
             wood = new Texture("../../assets/wood.jpg");
             root = new SceneGraph(new Vector3(0,1,0), 1);
             root.AddChildNode(mesh);
-            mesh.AddChildNode(mesh2);
-            mesh.AddChildNode(mesh3);
-            mesh.AddChildNode(mesh4);
-            mesh.AddChildNode(mesh5);
-            mesh.AddChildNode(mesh6);
             mesh.AddChildNode(floor);
+            AddTeapots(mesh, 1);
+        }
+
+        public void AddTeapots(SceneGraph parent, int children)
+        {
+            int childs = children;
+            Mesh m1 = new Mesh(parent.pos + new Vector3(-10/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m2 = new Mesh(parent.pos + new Vector3(10/childs, 0, 0), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m3 = new Mesh(parent.pos + new Vector3(0, 0, -10/childs), 0.5f/childs, "../../assets/teapot.obj");
+            Mesh m4 = new Mesh(parent.pos + new Vector3(0, 0, 10/childs), 0.5f/childs, "../../assets/teapot.obj");
+
+            parent.AddChildNode(m1);
+            parent.AddChildNode(m2);
+            parent.AddChildNode(m3);
+            parent.AddChildNode(m4);
+
+            if (childs < 3)
+            {
+                AddTeapots(m1, childs+1);
+                AddTeapots(m2, childs+1);
+                AddTeapots(m3, childs+1);
+                AddTeapots(m4, childs+1);
+            }
         }
         // tick for background surface
         public void Tick()
@@ -120,13 +133,25 @@ namespace Template_P3
             //fov aspect ratio, near Z plane, far Z plane
             transform *= Matrix4.CreatePerspectiveFieldOfView(1.2f, 1.3f, .1f, 1000f);
             // update rotation
-            a += 0.001f * frameDuration;
+            a += 0.0002f * frameDuration;
             if (a > 2 * PI) a -= 2 * PI;
 
-            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a);
+            Matrix4 transform2 = Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), 5*a);
             
             // render scene
-            floor.Update(transform2);
+            foreach (Mesh m in mesh.children)
+            {
+                foreach (Mesh child in m.children)
+                {
+                    child.Update(transform2);
+                }
+
+            }
+            foreach (Mesh m in mesh.children)
+            {
+                m.Update(transform2);
+            }
+
             root.Update(transform);
             floor.Input(transform2);
             root.Input( Matrix4.CreateFromAxisAngle(new Vector3(0, 1, 0), a));
